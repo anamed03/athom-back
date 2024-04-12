@@ -153,36 +153,6 @@ router.post('/productos', (req, res) => {
     });
 });
 
-//-----------------------------------------------Arduino--------------------------------------------------------------
-router.get('/productos/ultimo', (req, res) => {
-    const sqlQuery = 'SELECT * FROM productos ORDER BY IdProducto DESC LIMIT 1';
-    db.query(sqlQuery, (err, result) => {
-        if (err) {
-            console.error('Error al obtener el último registro de productos:', err);
-            res.status(500).json({ error: 'Error al obtener el último registro de productos' });
-            return;
-        }
-        if (result.length > 0) {
-            const ultimoProducto = result[0];
-            // Aquí agregamos la categoría al objeto que vamos a devolver
-            const respuesta = {
-                IdProducto: ultimoProducto.IdProducto,
-                QR: ultimoProducto.QR,
-                Nombre: ultimoProducto.Nombre,
-                Categoria: ultimoProducto.Categoria,
-                Cantidad: ultimoProducto.Cantidad
-            };
-            res.json(respuesta);
-        } else {
-            res.status(404).json({ error: 'No se encontraron productos' });
-        }
-    });
-});
-
-
-// Usar el enrutador definido para todas las rutas bajo /api
-app.use('/api', router);
-
 //////////////////////////////////////////////////////LOGICA USUARIOS///////////////////////////////////////////////////////////////////////////77
 // Ruta para obtener todos los usuarios
 router.get('/users', (req, res) => {
