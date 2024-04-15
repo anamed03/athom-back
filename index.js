@@ -1,13 +1,17 @@
 
-const express = require('express')
-const app = express()
+const express = require('express');
 const mysql = require('mysql')
-const cors = require('cors')
+const cors = require('cors');
 const router = express.Router();
 
+const app = express();
+const PORT = process.env.PORT;
 
-app.use(express.json())
-app.use(cors())
+app.use(express.json());
+app.use(cors({
+    credentials: true,
+    origin: '*'
+}));
 
 //------------------------------------------------------------------
 app.use(function(req, res, next) {
@@ -18,18 +22,33 @@ app.use(function(req, res, next) {
   });
 
 // Let us run the server. SO its running,
-app.listen(3000, ()=>{
-    console.log('Server is running on port 3000')
-})
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en el puerto ${PORT}`);
+});
+
 
 
 const db = mysql.createConnection({
-    user: 'dbu2754334',
-    host: 'db5015663674.hosting-data.io',
+    user: 'dbu918380',
+    host: 'db5015663105.hosting-data.io',
     password: 'MEMAMMCJ02j%', 
-    database: 'dbs12785880',
-})
+    database: 'dbs12785457',
+}) 
 
+/* const db = mysql.createConnection({
+    user: 'root',
+    host: 'localhost',
+    password: '', 
+    database: 'db_integra',
+}) */
+
+db.connect((err) => {
+    if (err) {
+        console.error('Error al conectar a la base de datos:', err);
+        return;
+    }
+    console.log('Base de datos conectada');
+});
 
 
 //logica para mandar datos a la base de datos 
