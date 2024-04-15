@@ -1,4 +1,4 @@
-// Our dependecies
+
 const express = require('express')
 const app = express()
 const mysql = require('mysql')
@@ -22,11 +22,11 @@ app.listen(3000, ()=>{
     console.log('Server is running on port 3000')
 })
 
-// Let us create our database (mysql)
+
 const db = mysql.createConnection({
     user: 'dbu2754334',
     host: 'db5015663674.hosting-data.io',
-    password: 'MEMAMMCJ02j%', //If you have set xampp password please enter it here
+    password: 'MEMAMMCJ02j%', 
     database: 'dbs12785880',
 })
 
@@ -40,11 +40,11 @@ app.post('/register', (req, res)=>{
     const sentUserName =  req.body.UserName
     const sentPassword =  req.body.Password
 
-    // Lets create SQL statement to insert the user to the Database table Users
-    const SQL = 'INSERT INTO users (email, username, password) VALUES (?,?,?)' //We are going to enter these values through a variable
+  
+    const SQL = 'INSERT INTO users (email, username, password) VALUES (?,?,?)' 
     const Values = [sentEmail, sentUserName, sentPassword]
 
-    // Query to execute the sql statement stated above
+   
     db.query(SQL, Values, (err, results)=>{
         if(err){
             res.send(err)
@@ -52,27 +52,24 @@ app.post('/register', (req, res)=>{
         else{
             console.log('User inserted succcessfully!')
             res.send({message: 'User added!'})
-            // Let try and see
-            // user has not been submitted, we need to use Express and cors
-            // Successful
+        
         }
     })
     
 })
 
-// Now we need to login with these credentials from a registered User
-// Lets create another route
+
 app.post('/login', (req, res)=>{
-     // We need to get variables sent from the form
+     
 
      const sentloginUserName =  req.body.LoginUserName
      const sentLoginPassword =  req.body.LoginPassword
  
-     // Lets create SQL statement to insert the user to the Database table Users
-     const SQL = 'SELECT * FROM users WHERE username = ? && password = ?' //We are going to enter these values through a variable
+    
+     const SQL = 'SELECT * FROM users WHERE username = ? && password = ?' 
      const Values = [sentloginUserName, sentLoginPassword]
 
-      // Query to execute the sql statement stated above
+      
     db.query(SQL, Values, (err, results)=>{
         if(err){
             console.log('Error')
@@ -82,7 +79,7 @@ app.post('/login', (req, res)=>{
         }
         else{
             res.send({message: `Credentials Don't match!`})
-            // This should be goood, lets try to login.
+            
         }
     })
 })
