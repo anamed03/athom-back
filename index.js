@@ -29,18 +29,19 @@ app.listen(PORT, () => {
 
 
 const db = mysql.createConnection({
-    user: 'dbu918380',
-    host: 'db5015663105.hosting-data.io',
-    password: 'MEMAMMCJ02j%', 
-    database: 'dbs12785457',
+    user: 'dbu2834182',
+    host: 'db5015678668.hosting-data.io',
+    port: 3306,
+    password: 'baseana12345!', 
+    database: 'dbs12797062',
 }) 
 
-/* const db = mysql.createConnection({
+/*  const db = mysql.createConnection({
     user: 'root',
     host: 'localhost',
     password: '', 
     database: 'db_integra',
-}) */
+})  */
 
 db.connect((err) => {
     if (err) {
