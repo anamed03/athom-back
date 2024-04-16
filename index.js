@@ -5,16 +5,23 @@ const cors = require('cors');
 const router = express.Router();
 
 const app = express();
-const PORT = process.env.PORT || 10000; // Asegúrate de definir un puerto por defecto
-
-app.use(cors({
-    origin: 'http://localhost:5173', // Permitir solicitudes desde localhost:5173
-    credentials: true // Permitir el envío de credenciales (cookies, tokens, etc.)
-  }));
+const PORT = process.env.PORT;
 
 app.use(express.json());
+app.use(cors({
+    credentials: true,
+    origin: '*'
+}));
 
+//------------------------------------------------------------------
+app.use(function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+  });
 
+// Let us run the server. SO its running,
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
@@ -46,6 +53,7 @@ db.connect((err) => {
 
 
 //logica para mandar datos a la base de datos 
+
 app.post('/register', (req, res)=>{
     // We need to get variables sent from the form
     const sentEmail =  req.body.Email
