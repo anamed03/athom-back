@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 10000; // Asegúrate de definir un puerto por d
 app.use(express.json());
 app.use(cors()); // Usar el middleware cors sin configuraciones adicionales
 
-// Let us run the server. SO its running,
+
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
