@@ -5,21 +5,10 @@ const cors = require('cors');
 const router = express.Router();
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000; // Asegúrate de definir un puerto por defecto
 
 app.use(express.json());
-app.use(cors({
-    credentials: true,
-    origin: '*'
-}));
-
-//------------------------------------------------------------------
-app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-  });
+app.use(cors()); // Usar el middleware cors sin configuraciones adicionales
 
 // Let us run the server. SO its running,
 app.listen(PORT, () => {
@@ -53,7 +42,6 @@ db.connect((err) => {
 
 
 //logica para mandar datos a la base de datos 
-
 app.post('/register', (req, res)=>{
     // We need to get variables sent from the form
     const sentEmail =  req.body.Email
