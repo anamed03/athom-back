@@ -30,7 +30,7 @@ app.listen(PORT, () => {
 
 const db = mysql.createConnection({
     user: 'dbu2834182',
-    host: 'db5015678668.hosting-data.io',
+    host: 'db5015678668',
     port: 3306,
     password: 'baseana12345!', 
     database: 'dbs12797062',
