@@ -7,6 +7,11 @@ const router = express.Router();
 const app = express();
 const PORT = process.env.PORT || 10000; // Asegúrate de definir un puerto por defecto
 
+app.use(cors({
+    credentials: true,
+    origin: '*'
+}));
+
 app.use(express.json());
 app.use(cors()); // Usar el middleware cors sin configuraciones adicionales
 
