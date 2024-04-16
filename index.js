@@ -8,12 +8,11 @@ const app = express();
 const PORT = process.env.PORT || 10000; // Asegúrate de definir un puerto por defecto
 
 app.use(cors({
-    credentials: true,
-    origin: '*'
-}));
+    origin: 'http://localhost:5173', // Permitir solicitudes desde localhost:5173
+    credentials: true // Permitir el envío de credenciales (cookies, tokens, etc.)
+  }));
 
 app.use(express.json());
-app.use(cors()); // Usar el middleware cors sin configuraciones adicionales
 
 
 app.listen(PORT, () => {
